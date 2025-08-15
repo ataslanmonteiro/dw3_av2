@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sistema de Gerenciamento de Tarefas</title>
+
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Sistema de Gerenciamento de Tarefas</h1>
+      </header>
+
+      <div class="main-layout">
+        <aside class="sidebar">
+          <h2>Projetos</h2>
+          <div class="projeto-item ativo" data-projeto-id="todos">
+            <span>📋 Todas as Tarefas</span>
+          </div>
+          <div id="lista-projetos"></div>
+
+          <div id="form-projeto" class="formulario">
+            <div class="grupo-input">
+              <label for="nome-projeto">Nome do Projeto:</label>
+              <input
+                type="text"
+                id="nome-projeto"
+                placeholder="Digite o nome do projeto"
+              />
+            </div>
+            <div class="formulario-acoes">
+              <button
+                type="button"
+                class="btn btn-primario"
+                onclick="gerenciadorProjetos.adicionarProjeto()"
+              >
+                Adicionar
+              </button>
+              <button
+                type="button"
+                class="btn btn-secundario"
+                onclick="gerenciadorProjetos.cancelarEdicao()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-secundario"
+            onclick="gerenciadorProjetos.mostrarFormulario()"
+            style="width: 100%; margin-top: 1rem"
+          >
+            + Novo Projeto
+          </button>
+        </aside>
+
+        <main class="content">
+          <h2 id="titulo-secao">Todas as Tarefas</h2>
+
+          <div class="filtros">
+            <button class="filtro-item ativo" data-filtro="todas">Todas</button>
+            <button class="filtro-item" data-filtro="pendentes">
+              Pendentes
+            </button>
+            <button class="filtro-item" data-filtro="concluidas">
+              Concluídas
+            </button>
+            <button class="filtro-item" data-filtro="alta">
+              Alta Prioridade
+            </button>
+            <button class="filtro-item" data-filtro="media">
+              Média Prioridade
+            </button>
+            <button class="filtro-item" data-filtro="baixa">
+              Baixa Prioridade
+            </button>
+          </div>
+
+          <div id="form-tarefa" class="formulario">
+            <div class="grupo-input">
+              <label for="titulo-tarefa">Título da Tarefa:</label>
+              <input
+                type="text"
+                id="titulo-tarefa"
+                placeholder="Digite o título da tarefa"
+                required
+              />
+            </div>
+
+            <div class="grupo-input">
+              <label for="descricao-tarefa">Descrição:</label>
+              <textarea
+                id="descricao-tarefa"
+                rows="3"
+                placeholder="Descreva a tarefa (opcional)"
+              ></textarea>
+            </div>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1rem;
+              "
+            >
+              <div class="grupo-input">
+                <label for="data-vencimento">Data de Vencimento:</label>
+                <input type="date" id="data-vencimento" />
+              </div>
+
+              <div class="grupo-input">
+                <label for="prioridade-tarefa">Prioridade:</label>
+                <select id="prioridade-tarefa">
+                  <option value="baixa">Baixa</option>
+                  <option value="media" selected>Média</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+
+              <div class="grupo-input">
+                <label for="projeto-tarefa">Projeto:</label>
+                <select id="projeto-tarefa">
+                  <option value="">Sem projeto</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="formulario-acoes">
+              <button
+                type="button"
+                class="btn btn-primario"
+                onclick="gerenciadorTarefas.salvarTarefa()"
+              >
+                Salvar Tarefa
+              </button>
+              <button
+                type="button"
+                class="btn btn-secundario"
+                onclick="gerenciadorTarefas.cancelarEdicao()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-primario"
+            onclick="gerenciadorTarefas.mostrarFormulario()"
+            style="margin-bottom: 1.5rem"
+          >
+            + Nova Tarefa
+          </button>
+
+          <div id="lista-tarefas" class="lista-tarefas"></div>
+        </main>
+      </div>
+    </div>
+
+    <script src="./src/js/app.js"></script>
+  </body>
+</html>
